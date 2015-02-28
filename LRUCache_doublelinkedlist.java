@@ -93,7 +93,7 @@ class DoubleLinkedListNode {
   public DoubleLinkedListNode next;
 
   public DoubleLinkedListNode(int key, int value) {
-      val = value;
+      this.val = value;
       this.key = key;
   }
 }

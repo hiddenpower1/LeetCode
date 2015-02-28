@@ -55,10 +55,27 @@ public class ValidParentheses {
     
     return st.isEmpty();
   }
+  
+  
+  public boolean isValid(String s) {
+    Stack<Character> st = new Stack<Character>();
+    for(int i = 0;i<s.length();i++){
+        if(s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) == '}'){
+            st.push(s.charAt(i));
+        }else{
+            if(st.isEmpty() || (s.charAt(i) == ')' && st.peek() != '(') || (s.charAt(i) == ']' && st.peek() != '[') || (s.charAt(i) == '}' && st.peek() != '{'))
+                return false;
+            st.pop();
+        }
+    }
+    
+    return st.isEmpty();
+}
 
   public static void main(String[] args) {
     // TODO Auto-generated method stub
-
+    ValidParentheses so = new ValidParentheses();
+    System.out.print(so.isValid("(){}[]"));
   }
 
 }

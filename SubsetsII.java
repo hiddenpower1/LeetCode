@@ -36,9 +36,38 @@ public class SubsetsII {
       used.add(num[i]);
     }
   }
+  
+  
+  public ArrayList<ArrayList<Integer>> subsetsWithDup2(int[] num) {
+    ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+    Arrays.sort(num);
+    for(int i = 0;i<=num.length;i++){
+        ArrayList<Integer> set = new ArrayList<Integer>();
+        generate2 (num,result,set,0,i);
+    }
+    return result;
+}
+
+private void generate2(int[] num,ArrayList<ArrayList<Integer>> result,ArrayList<Integer> set, int start ,int size){
+    if(set.size() == size){
+        result.add(new ArrayList<Integer>(set));
+        return;
+    }
+    
+    for(int i = start;i<num.length;i++){
+        if(i == start || num[i]!= num[i-1]){
+            set.add(num[i]);
+            generate2(num,result,set,start+1,size);
+            set.remove(set.size()-1);
+        }
+    }
+}
+
   public static void main(String[] args) {
     // TODO Auto-generated method stub
-
+    int[] a = {1,2,3,4,5,6,7,8,10,0};
+    SubsetsII so = new SubsetsII();
+    so.subsetsWithDup2(a);
   }
 
 }

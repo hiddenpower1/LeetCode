@@ -9,18 +9,18 @@ public class MaxPointsonaLine {
       return points.length;
     
     //at least two points can form a line
-    int max = 1;
+    int max = 2;
     
     for(int i=0;i<points.length-1;i++){
-      HashMap<Double,Integer> hm = new HashMap<Double,Integer>();
+      HashMap<Float,Integer> hm = new HashMap<Float,Integer>();
       int samerow= 1;
-      int curmax = 1;
+      int curmax = 2;
       int dup = 0;
       for(int j=i+1;j<points.length;j++){
         //y not the same
         if(points[i].y != points[j].y){
           //0.0+ to avoid -0.0 when all x are the same, but y have negative
-          double slop = 0.0+(double)(points[i].x -points[j].x)/(points[i].y -points[j].y);
+          float slop = 0.0f + (float)(points[i].x -points[j].x)/(points[i].y -points[j].y);
           if(hm.containsKey(slop)){
             hm.put(slop, hm.get(slop)+1);
             //check if need update max.
@@ -28,8 +28,8 @@ public class MaxPointsonaLine {
               curmax = hm.get(slop);
           }else{
             hm.put(slop, 2);
-            if(hm.get(slop)>curmax)
-              curmax = hm.get(slop);
+//            if(hm.get(slop)>curmax)
+//              curmax = hm.get(slop);
           }
         }else{
           //x and y are the same, add 1 to the duplicate count.
@@ -51,11 +51,13 @@ public class MaxPointsonaLine {
     return max;
     
   }
+  
+  
   public static void main(String[] args) {
     // TODO Auto-generated method stub
     Point a = new Point(1,1);
     Point b = new Point(1,1);
-    Point c = new Point(0,0);
+    Point c = new Point(1,1);
     Point[] points = {a,b,c};
     MaxPointsonaLine so = new MaxPointsonaLine();
     System.out.print(so.maxPoints(points));

@@ -38,13 +38,16 @@ public class SimplifyPath {
     
     
   }
+  
+  
+  
   /**
    * @param args
    */
   public static void main(String[] args) {
     // TODO Auto-generated method stub
     SimplifyPath so = new SimplifyPath();
-    so.simplifyPath("/.");
+    System.out.print(so.simplifyPath("/."));
   }
 
 }

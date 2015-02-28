@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.PriorityQueue;
 
 import shared.ListNode;
 
@@ -49,6 +52,39 @@ public class MergekSortedLists {
     
     
   }
+  
+  
+  //using PriorityQueue
+  public ListNode mergeKLists2(List<ListNode> lists) {
+    if(lists.size() == 0)
+        return null;
+    if(lists.size() == 1)
+        return lists.get(0);
+    
+    ListNode result = new ListNode(-1);
+    PriorityQueue<ListNode> pq = new PriorityQueue<ListNode>(lists.size(),new Comparator<ListNode>(){
+        public int compare (ListNode a,ListNode b){
+            return Integer.compare(a.val,b.val);
+        }
+    });
+    
+    //init PQ
+    for(int i = 0;i<lists.size();i++){
+        if(lists.get(i) != null)
+            pq.add(lists.get(i));
+    }
+    
+    ListNode cur = result;
+    while(!pq.isEmpty()){
+        ListNode temp = pq.poll();
+        if(temp.next!=null)
+            pq.add(temp.next);
+        cur.next = temp;
+        cur = cur.next;
+    }
+    
+    return result.next;
+}
 
   public static void main(String[] args) {
     // TODO Auto-generated method stub

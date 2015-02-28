@@ -8,7 +8,9 @@ import java.util.Map;
 public class FourSum {
   public ArrayList<ArrayList<Integer>> foursum(int[] num, int target) {
 
+    //ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
     ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+
     Arrays.sort(num);
 
     for (int i = 0; i < num.length - 3; i++) {

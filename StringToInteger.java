@@ -35,6 +35,35 @@ public class StringToInteger {
     
     return pos == true ? result:-result;
   }
+  
+  
+  public int atoi2(String str) {
+    str = str.trim();
+    if(str.length()==0)
+        return 0;
+    
+    boolean neg = false;
+    int result = 0;
+    
+    for(int i = 0;i<str.length();i++){
+        if(Character.isDigit(str.charAt(i))){
+            long exceed = (long) result*10 + Character.digit(str.charAt(i), 10);
+            if(exceed > Integer.MAX_VALUE || -exceed < Integer.MIN_VALUE)
+                return neg == true ? Integer.MIN_VALUE:Integer.MAX_VALUE;
+            else
+                result = result*10 + Character.digit(str.charAt(i), 10);
+        }else{
+            if(i==0 && (str.charAt(i) == '+' || str.charAt(i) == '-' )){
+                neg = (str.charAt(0) == '-' ? true:false); 
+            }else{
+                return neg==true? -result:result;
+            }
+        }
+    }
+    
+    return neg==true? -result:result;
+  }
+  
   public static void main(String[] args) {
     // TODO Auto-generated method stub
     StringToInteger so = new StringToInteger();
@@ -42,7 +71,7 @@ public class StringToInteger {
 //    long test = 214748364L*10+8;
 //    System.out.print(test);
     
-    System.out.print(so.atoi("-2147483648"));
+    System.out.print(so.atoi2("   010"));
   }
 
 }

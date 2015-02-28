@@ -16,7 +16,7 @@ public class ReverseNodesinKGroup {
     ListNode start;
     
     while(cur!=null){
-      //after the loop, l2 will point to the last Node of the current K group.
+      //after the loop, cur will point to the last Node of the current K group.
       for(int i = 1;i<k;i++){
         
         cur = cur.next;

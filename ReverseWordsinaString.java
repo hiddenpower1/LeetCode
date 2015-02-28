@@ -20,6 +20,8 @@ public class ReverseWordsinaString {
     
     return result.toString().trim();
   }
+  
+  //if need in place, reverse each word then reverse the whole string.
  
   public static void main(String[] args) {
     // TODO Auto-generated method stub

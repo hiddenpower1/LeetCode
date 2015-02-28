@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 
 
 public class ThreeSum {
@@ -51,13 +52,45 @@ public class ThreeSum {
     return result;
 
   }
+  
+  
+  public ArrayList<ArrayList<Integer>> threeSum2(int[] num) {
+    Arrays.sort(num);
+    ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+    for(int i = 0;i<num.length-2;i++){
+      if(i==0 || num[i] != num[i-1])
+        twoSum(num,-num[i],i,result);
+    }
+    
+    return result;
+}
+
+public void twoSum(int[] numbers, int target,int start , ArrayList<ArrayList<Integer>> result) {
+    HashSet<Integer> hs = new HashSet<Integer>();
+    for(int i=start+1;i<numbers.length;i++){
+        if(hs.contains(numbers[i])){
+            ArrayList<Integer> temp = new ArrayList<Integer>();
+            temp.add(-target);
+            temp.add(target - numbers[i]);
+            temp.add(numbers[i]);
+            result.add(temp);
+            while(i<numbers.length-1 && numbers[i] == numbers[i+1])
+              i++;
+        }else{
+            hs.add(target-numbers[i]);
+        }
+    }
+}
 
   /**
    * @param args
    */
   public static void main(String[] args) {
     // TODO Auto-generated method stub
-
+    int[] num = {0,0,0};
+    ThreeSum so = new ThreeSum();
+    so.threeSum2(num);
+    System.out.print("end");
   }
 
 }

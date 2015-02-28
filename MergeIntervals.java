@@ -14,21 +14,21 @@ public class MergeIntervals {
     //sort intervals based on start
     Collections.sort(intervals,compareStart);
     
-    for(int i = 0;i<intervals.size()-1;i++){
-      //have overlap
-      if(intervals.get(i).end >= intervals.get(i+1).start){
-        if(intervals.get(i).end >= intervals.get(i+1).end){
-          intervals.set(i+1, new Interval(intervals.get(i).start,intervals.get(i).end));
-        }else{
-          intervals.set(i+1, new Interval(intervals.get(i).start,intervals.get(i+1).end));
+    int i = 0;
+    while(i<intervals.size()){
+        Interval temp = intervals.get(i);
+        while(i<intervals.size()-1 && temp.end >= intervals.get(i+1).start){
+            //have overlap, keep update cur interval till no overlap or reach the end
+            temp.end = Math.max(intervals.get(i+1).end,temp.end);
+            i++;
         }
-      }else{
-        result.add(intervals.get(i));
-      }
+        
+        //either i = intervals.size()-1 or no overlap.
+        result.add(temp);
+        i++;
+
     }
     
-    //add the last interval
-    result.add(intervals.get(intervals.size()-1));
     return result;
     
   }

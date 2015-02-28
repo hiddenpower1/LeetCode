@@ -15,7 +15,7 @@ public class BinaryTreePreorderTraversal {
     while(!st.isEmpty() || node!=null){
       if(node!=null){
         order.add(node.val);
-        st.add(node);
+        st.push(node);
         node = node.left;
       }else{
         node = st.pop();

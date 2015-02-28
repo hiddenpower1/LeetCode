@@ -24,6 +24,7 @@ public class RestoreIPAddresses {
       return;
     }
     
+    //each round can take up to 3 digits
     for(int i = 1;i<=3 && i<s.length();i++){
       String digits = s.substring(0,i);
       if(isValid(digits))

@@ -9,18 +9,18 @@ public class PlusOne {
       int sum = digits[i] + carry;
       digits[i] = sum % 10;
       carry = sum / 10;
+      if(carry == 0)
+          return digits;
     }
 
-    if (carry == 0) {
-      return digits;
-    } else {
+
       int[] result = new int[digits.length + 1];
       result[0] = 1;
-      for (int i = 1; i < result.length; i++) {
-        result[i] = digits[i - 1];
-      }
+      //no need cause only 999+1 will need extra digit, after plus one, rest will be 0.
+//      for (int i = 1; i < result.length; i++) {
+//        result[i] = digits[i - 1];
+//      }
       return result;
-    }
 
   }
 
